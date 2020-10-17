@@ -3,18 +3,20 @@ import { login } from "./../utils";
 
 function FormV1() {
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState("username");
-  const [password, setPassword] = useState("password");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   async function onSubmit(e) {
     e.preventDefault();
     setLoading(true);
     console.dir("clicked");
     try {
-      await login({});
-      // debugger;
+      await login({ username, password });
+      debugger;
     } catch (error) {
-      // debugger;
+      setError(error)
+      debugger;
     }
 
     setLoading(false);
@@ -23,6 +25,7 @@ function FormV1() {
     <>
       <form onSubmit={onSubmit}>
         <p>Please Login</p>
+        {error ? <p className="error">{error}</p> : null}
         <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <input type="text" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type="submit" disabled={loading}>
