@@ -6,6 +6,7 @@ function FormV1() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -13,25 +14,30 @@ function FormV1() {
     console.dir("clicked");
     try {
       await login({ username, password });
-      debugger;
+      setLoggedIn(true);
+      // debugger;
     } catch (error) {
-      setError(error)
-      debugger;
+      setError(error);
+      // debugger;
     }
 
     setLoading(false);
   }
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <p>Please Login</p>
-        {error ? <p className="error">{error}</p> : null}
-        <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type="text" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit" disabled={loading}>
-          Log In
-        </button>
-      </form>
+      {loggedIn ? (
+        <h1>Welcome {username}</h1>
+      ) : (
+        <form onSubmit={onSubmit}>
+          <p>Please Login</p>
+          {error ? <p className="error">{error}</p> : null}
+          <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button type="submit" disabled={loading}>
+            Log In
+          </button>
+        </form>
+      )}
     </>
   );
 }
