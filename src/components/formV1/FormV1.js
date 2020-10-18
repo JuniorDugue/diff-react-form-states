@@ -11,10 +11,13 @@ function FormV1() {
   async function onSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    console.dir("clicked");
+    setError(null);
+    // console.dir("clicked");
     try {
       await login({ username, password });
       setLoggedIn(true);
+      setUsername("");
+      setPassword("");
       // debugger;
     } catch (error) {
       setError(error);
@@ -26,13 +29,16 @@ function FormV1() {
   return (
     <>
       {loggedIn ? (
-        <h1>Welcome {username}</h1>
+        <>
+          <h1>Welcome {username}</h1>
+          <button onClick={() => setLoggedIn(false)}>Log out</button>
+        </>
       ) : (
         <form onSubmit={onSubmit}>
           <p>Please Login</p>
           {error ? <p className="error">{error}</p> : null}
           <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-          <input type="text" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button type="submit" disabled={loading}>
             Log In
           </button>
