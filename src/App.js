@@ -8,7 +8,8 @@ function App() {
     <div className="login-container">
       <h2>Form version 1</h2>
       <FormV1 />
-      <FormV2/>
+      <br></br>
+      <FormV2 />
     </div>
   );
 }

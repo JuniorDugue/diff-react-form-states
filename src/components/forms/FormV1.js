@@ -35,7 +35,7 @@ function FormV1() {
         </>
       ) : (
         <form onSubmit={onSubmit}>
-          <p>Basic Form</p>
+          <p>Form with useState</p>
           {error ? <p className="error">{error}</p> : null}
           <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
           <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
