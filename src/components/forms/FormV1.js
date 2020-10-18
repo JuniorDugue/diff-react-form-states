@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "./../utils";
+import { login } from "../utils";
 
 function FormV1() {
   const [loading, setLoading] = useState(false);
@@ -16,11 +16,11 @@ function FormV1() {
     try {
       await login({ username, password });
       setLoggedIn(true);
-      setUsername("");
-      setPassword("");
       // debugger;
     } catch (error) {
-      setError(error);
+      setError("Incorrect username or password");
+      setUsername("");
+      setPassword("");
       // debugger;
     }
 
@@ -35,7 +35,7 @@ function FormV1() {
         </>
       ) : (
         <form onSubmit={onSubmit}>
-          <p>Please Login</p>
+          <p>Basic Form</p>
           {error ? <p className="error">{error}</p> : null}
           <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
           <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
