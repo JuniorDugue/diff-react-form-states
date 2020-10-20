@@ -22,6 +22,12 @@ export default function loginReducer(state, action) {
         ...action.value,
       };
 
+    case "error":
+      return {
+        ...state,
+        error: action.value,
+      };
+      
     case "success":
       return {
         ...action.value,
