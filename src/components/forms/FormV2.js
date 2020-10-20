@@ -27,7 +27,6 @@ function FormV2() {
       // we'll get to this line if its a negative return
       dispatch({ type: "error", value: error });
     }
-
     // dispatch({ type: "reset", value: initialState });
   }
 
